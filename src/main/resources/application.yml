@@ -1,0 +1,59 @@
+#Spring Boot Actuator
+management:
+   endpoints:
+      web:
+        base-path: /
+        path-mapping:
+          health: /actuator/health
+        exposure: 
+          include: health
+      # Determinamos que endpoints publicamos y cuales no
+      enabled-by-default: true
+   endpoint:
+# Publicamos unicamente el check health
+      health:
+         enabled: true
+server:
+   port: 8100
+   undertow:
+      threads.io: 1 # Number of I/O threads to create for the worker. The default is derived from the number of available processors.
+      threads.worker: 8 # Number of worker threads. The default is 8 times the number of I/O threads.
+      accesslog:
+         enabled: false # Whether to enable the access log.
+      buffer-size: 16000 # Size of each buffer.
+      direct-buffers: true # Whether to allocate buffers outside the Java heap. The default is derived from the maximum amount of memory that is available to the JVM.
+      eager-filter-init: true # Whether servlet filters should be initialized on startup.
+      max-http-post-size: -1B # Maximum size of the HTTP post content. When the value is -1, the default, the size is unlimited.
+   servlet:
+      context-path:   
+spring:
+  application:
+    name: sesiones
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  web:
+    locale: es
+  messages:
+    basename: org/hibernate/validator/ValidationMessages, messages/sesionesMessages
+  
+  data:
+    mongodb:
+      uri: mongodb+srv://pante:espeluznante@cluster0.oujnb6g.mongodb.net/dragon?retryWrites=true&w=majority
+  estaGracefulShutdownWaitSeconds: 10		
+
+logging:
+  level:
+    es.eci.amv.service: debug
+    http.wire: debug
+    ROOT: info
+#    org.springframework.data.mongodb.core.MongoTemplate: debug
+#    org.mongodb.driver: debug
+---
+environment: test
+spring:
+   config.activate.on-profile: test
+   rest.base.url: http://localhost:8083
+   
+  
+
+
