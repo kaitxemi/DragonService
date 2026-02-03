@@ -125,7 +125,7 @@ public class SesionService {
 		response.setTiempo_parcial2(dto.getTiempo_parcial2());
 		response.setDistancia_parcial3(dto.getDistancia_parcial3());
 		response.setTiempo_parcial3(dto.getTiempo_parcial3());
-		response.setDistancia_Parcial4(dto.getDistancia_Parcial4());
+		response.setDistancia_parcial4(dto.getDistancia_parcial4());
 		response.setTiempo_parcial4(dto.getTiempo_parcial4());
 		response.setTiempo_total(dto.getTiempo_total());
 		

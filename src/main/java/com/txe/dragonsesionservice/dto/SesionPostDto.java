@@ -54,7 +54,7 @@ public class SesionPostDto {
 	private String tiempo_parcial3;
 	
 	@NotNull
-	private Integer distancia_Parcial4;
+	private Integer distancia_parcial4;
 	
 	@NotNull
 	private String tiempo_parcial4;
@@ -158,12 +158,12 @@ public class SesionPostDto {
 		this.tiempo_parcial3 = tiempo_parcial3;
 	}
 
-	public Integer getDistancia_Parcial4() {
-		return distancia_Parcial4;
+	public Integer getDistancia_parcial4() {
+		return distancia_parcial4;
 	}
 
-	public void setDistancia_Parcial4(Integer distancia_Parcial4) {
-		this.distancia_Parcial4 = distancia_Parcial4;
+	public void setDistancia_Parcial4(Integer distancia_parcial4) {
+		this.distancia_parcial4 = distancia_parcial4;
 	}
 
 	public String getTiempo_parcial4() {
