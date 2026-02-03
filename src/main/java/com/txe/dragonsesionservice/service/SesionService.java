@@ -98,44 +98,6 @@ public class SesionService {
 	
 
 	/**
-	 * Guarda una cesta. Si no tiene id se le asignara uno nuevo, si tiene id se sobreescribira.
-	 *
-	 * @param cart Objeto cesta que sera guardado.
-	 * @param repositorio nombre del repositorio a utilizar, tiene que estar comtemplado previamente
-	 * como Repository. Si es null utilizaremos el repositorio de cesta estándar de venta actual.
-	 * @return cart created
-	 */
-	/**public SesionDto save(SesionDto cart, String repositorio) throws CartNotFoundException{
-		Cart cartCreated = null;
-
-		if(Optional.ofNullable(repositorio).orElse("").equals(RepositorioType.ENJOY.getRepositorio())) {
-			cartCreated = cartEnjoyRepository.save((CartEnjoy)CartBuilder.buildCart(cart));
-		}else if(Utils.esRepositorioEstandar(repositorio)) {
-			cartCreated = this.cartRepository.save(CartBuilder.buildCart(cart));
-		}else if (repositorio.equals(RepositorioType.SCANGO.getRepositorio()))	{
-			cartCreated = cartScanGoRepository.save((CartScanGo)CartBuilder.buildCart(cart));		
-		}else if (repositorio.equals(RepositorioType.CAFETERIA_MESA.getRepositorio()))	{
-			cartCreated = cartCafeteriaCobroMesaRepository.save((CartCafeteriaMesa)CartBuilder.buildCart(cart));
-		}else if (repositorio.equals(RepositorioType.AUXILIAR.getRepositorio()))	{
-			CartAuxiliar cartAuxiliar = (CartAuxiliar)CartBuilder.buildCart(cart);
-			cartAuxiliar.setExpireAt(LocalDateTime.now().plusDays(numeroDiasBackupCestaExtensibilidad));
-			cartCreated = cartAuxiliarRepository.save(cartAuxiliar);
-		}else if (repositorio.equals(RepositorioType.EXTENSIBILIDAD.getRepositorio())) {
-			if (cart.getTipoCesta()==null) {
-				cart.setTipoCesta(TipoCestaType.EXTENSIBILIDAD.getTipoCesta());
-			}
-			CartExtensibilidad cartExtensibilidad = (CartExtensibilidad)CartBuilder.buildCart(cart);
-			cartExtensibilidad.setExpireAt(LocalDateTime.now().plusDays(numeroDiasBackupCestaAuxiliar));
-			cartCreated = cartExtensibilidadRepository.save(cartExtensibilidad);
-		}else {
-			Log.error("ATENCION!!! La cesta no se ha podido grabar dado su desconocimiento, tipo: " +cart.getIdCesta() + " repositorio " + repositorio);
-			throw new CartNotFoundException();
-		}
-
-		return CartBuilder.buildSesionDto(cartCreated);
-	}*/
-
-	/**
 	 * Busca sesiones en base a unos parámetros de búsqueda.
 	 *
 	 * @param parameters Parámetros de búsqueda
@@ -150,7 +112,22 @@ public class SesionService {
 	
 	private SesionModel buildSesionPostDtoToModel(SesionPostDto dto) {
 		SesionModel response = new SesionModel();
-		response.setPrueba(dto.getPrueba()); 
+		
+		response.setFecha_hora(dto.getFecha_hora());
+		response.setBarco(dto.getBarco());
+		response.setDistancia(dto.getDistancia());
+		response.setRitmo(dto.getRitmo());	
+		response.setDistancia_salida(dto.getDistancia_salida());
+		response.setTiempo_salida(dto.getTiempo_salida());
+		response.setDistancia_parcial1(dto.getDistancia_parcial1());
+		response.setTiempo_parcial1(dto.getTiempo_parcial1());
+		response.setDistancia_parcial2(dto.getDistancia_parcial2());
+		response.setTiempo_parcial2(dto.getTiempo_parcial2());
+		response.setDistancia_parcial3(dto.getDistancia_parcial3());
+		response.setTiempo_parcial3(dto.getTiempo_parcial3());
+		response.setDistancia_Parcial4(dto.getDistancia_Parcial4());
+		response.setTiempo_parcial4(dto.getTiempo_parcial4());
+		response.setTiempo_total(dto.getTiempo_total());
 		
 		return response;
 	}
