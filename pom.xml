@@ -4,9 +4,9 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>dragon-sesion-service</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>com.txemi</groupId>
+  <artifactId>dragon-entrenos-service</artifactId>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <parent>

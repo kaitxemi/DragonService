@@ -1,4 +1,4 @@
-package com.txe.dragonsesionservice.controller;
+package com.txe.dragonentrenoservice.controller;
 
 import java.util.List;
 
@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.txe.dragonsesionservice.dto.CartSearchDto;
-import com.txe.dragonsesionservice.dto.SesionDto;
-import com.txe.dragonsesionservice.dto.SesionPostDto;
-import com.txe.dragonsesionservice.service.SesionService;
+import com.txe.dragonentrenoservice.dto.EntrenosDto;
+import com.txe.dragonentrenoservice.dto.EntrenosSearchDto;
+import com.txe.dragonentrenoservice.service.EntrenosService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -30,14 +29,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/sesiones")
-@Tag(name = "sesiones", description = "CRUD colección Mongo sesiones")
-public class SesionController {
+@RequestMapping(value = "/entrenos")
+@Tag(name = "entrenos", description = "CRUD colección Mongo entrenos")
+public class EntrenosController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(SesionController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(EntrenosController.class);
 
     @Autowired
-    SesionService sesionService;
+    EntrenosService entrenosService;
 
    
 
@@ -56,8 +55,8 @@ public class SesionController {
             @ApiResponse(responseCode = "404", description = "Algún recurso no encontrado al intentar crear una sesión, ver el mensaje"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    public ResponseEntity<Void> post(@RequestBody @Valid SesionPostDto sesionDto) throws Exception {
-    	sesionService.create(sesionDto);
+    public ResponseEntity<Void> post(@RequestBody @Valid EntrenosDto sesionDto) throws Exception {
+    	entrenosService.create(sesionDto);
     	
     	return ResponseEntity.noContent().build(); // 204
     }
@@ -79,8 +78,8 @@ public class SesionController {
             @ApiResponse(responseCode = "404", description = "Algún recurso no encontrado al intentar obtener una sesion, ver el mensaje"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    public SesionDto get(@PathVariable(value="id_sesion") String sesionId) throws Exception {
-    	SesionDto response = sesionService.findById(sesionId);
+    public EntrenosDto get(@PathVariable(value="id_sesion") String sesionId) throws Exception {
+    	EntrenosDto response = entrenosService.findById(sesionId);
         
         return response;
     }
@@ -104,8 +103,8 @@ public class SesionController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     public ResponseEntity<Void> put(@PathVariable(value="id_sesion") String sesionId,
-                        			@RequestBody @Valid SesionDto sesionDto) throws Exception {
-    	sesionService.update(sesionId, sesionDto);
+                        			@RequestBody @Valid EntrenosDto sesionDto) throws Exception {
+    	entrenosService.update(sesionId, sesionDto);
     	
     	return ResponseEntity.noContent().build(); // 204
     }
@@ -130,7 +129,7 @@ public class SesionController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     public ResponseEntity<Void> delete(@PathVariable(value="id_sesion") String sesionId) throws Exception {
-    	sesionService.delete(sesionId);
+    	entrenosService.delete(sesionId);
         
     	return ResponseEntity.noContent().build(); // 204
     }
@@ -150,8 +149,8 @@ public class SesionController {
             @ApiResponse(responseCode = "400", description = "Algún error debido a los parámetros al intentar buscar las sesions, ver el mensaje"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    public List<SesionDto> search(@Valid CartSearchDto filterParams) throws Exception {
-        List<SesionDto> response = sesionService.search(filterParams);
+    public List<EntrenosDto> search(@RequestBody @Valid EntrenosSearchDto filterParams) throws Exception {
+        List<EntrenosDto> response = entrenosService.search(filterParams);
         
         return response;
     }

@@ -1,4 +1,4 @@
-package com.txe.dragonsesionservice.config;
+package com.txe.dragonentrenoservice.config;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

@@ -1,4 +1,4 @@
-package dragonSesionServiceTest;
+package dragonEntrenoServiceTest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,11 +6,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.txe.dragonsesionservice.DragonSesionServiceApplication;
+import com.txe.dragonentrenoservice.DragonEntrenosServiceApplication;
 
 
 @AutoConfigureMockMvc
-@SpringBootTest(classes = DragonSesionServiceApplication.class)
+@SpringBootTest(classes = DragonEntrenosServiceApplication.class)
 public class SesionControllerTest {
 
     @Autowired

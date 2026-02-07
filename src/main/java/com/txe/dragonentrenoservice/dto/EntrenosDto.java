@@ -1,58 +1,70 @@
-package com.txe.dragonsesionservice.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.txe.dragonentrenoservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "sesiones")
-public class SesionModel {
-	
-	@Id
-	private String id;
-	
-	/** Fecha y hora de la sesión "dd/MM/yyyy HH:mm" */
+public class EntrenosDto {
+
+	@NotNull
+	/** Fecha y hora de la sesión "yyyy/MM/dd HH:mm" */
 	private String fecha_hora;
 	
+	@NotNull
 	private String barco;
 	
+	@NotNull
 	private Integer distancia;
 	
+	@NotNull
 	private Integer ritmo;
 	
+	@NotNull
 	private Integer distancia_salida;
 	
+	@NotNull
 	private String tiempo_salida;
 	
+	@NotNull
 	private Integer distancia_parcial1;
 	
+	@NotNull
 	private String tiempo_parcial1;
 	
+	@NotNull
 	private Integer distancia_parcial2;
 	
+	@NotNull
 	private String tiempo_parcial2;
 	
+	@NotNull
 	private Integer distancia_parcial3;
 	
+	@NotNull
 	private String tiempo_parcial3;
 	
+	@NotNull
 	private Integer distancia_parcial4;
 	
+	@NotNull
 	private String tiempo_parcial4;
 	
+	@NotNull
 	private String tiempo_total;
 	
+	private Integer num_participantes;
 	
+	private String alias;
 
 	public String getFecha_hora() {
 		return fecha_hora;
@@ -174,14 +186,22 @@ public class SesionModel {
 		this.tiempo_total = tiempo_total;
 	}
 
-	public String getId() {
-		return id;
+	public Integer getNum_participantes() {
+		return num_participantes;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNum_participantes(Integer num_participantes) {
+		this.num_participantes = num_participantes;
 	}
 
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 	
-
+	
+	
 }
