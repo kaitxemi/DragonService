@@ -38,6 +38,20 @@ public class EntrenosController {
     @Autowired
     EntrenosService entrenosService;
 
+    @GetMapping( produces = MediaType.APPLICATION_JSON_VALUE, value = "/ping")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "ping", description = "Ver si el servicio está operativo")
+    @ApiResponses({
+ 		    @ApiResponse(responseCode = "204", description = "Servicio operativo"),
+            @ApiResponse(responseCode = "400", description = "Algún error debido a los parámetros al intentar crear una sesión, ver el mensaje"),
+            @ApiResponse(responseCode = "404", description = "Algún recurso no encontrado al intentar crear una sesión, ver el mensaje"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
+    public ResponseEntity<Void> ping() throws Exception {
+    	LOG.info("EntrenosController - ping");
+    	    	
+    	return ResponseEntity.noContent().build(); // 204
+    }
    
 
     /***
@@ -58,6 +72,7 @@ public class EntrenosController {
     public ResponseEntity<Void> post(@RequestBody @Valid EntrenosDto sesionDto) throws Exception {
     	LOG.info("EntrenosController - post: Creando sesión con datos: {}", sesionDto);
     	entrenosService.create(sesionDto);
+    	LOG.info("EntrenosController - post: Sesión creada correctamente");
     	
     	return ResponseEntity.noContent().build(); // 204
     }
@@ -153,6 +168,7 @@ public class EntrenosController {
     public List<EntrenosDto> search(@RequestBody @Valid EntrenosSearchDto filterParams) throws Exception {
     	LOG.info("EntrenosController - search: Parámetros de búsqueda recibidos: {}", filterParams);
         List<EntrenosDto> response = entrenosService.search(filterParams);
+        LOG.info("EntrenosController - search: Número de sesions encontradas: {}", response.size());
         
         return response;
     }

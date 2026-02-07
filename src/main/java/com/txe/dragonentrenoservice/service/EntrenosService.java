@@ -115,9 +115,12 @@ public class EntrenosService {
 			modelResponse = entrenosRepository.findTop100ByDistanciaOrderByFechaHoraDesc(parameters.getDistancia());
 		}
 		
+		int contador = 0;
 		for (EntrenosModel model : modelResponse) {
-			// Devolvemos los 100 registros más recientes
-			
+			// Devolvemos los 100 registros más recientes que cumplan los parámetros de búsqueda
+			if (contador >= 100) {
+				break;
+			}
 			response.add(buildSesionModelToDto(model));
 		}
 		
