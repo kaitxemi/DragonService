@@ -2,6 +2,7 @@ package com.txe.dragonentrenoservice.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -21,8 +22,9 @@ public class EntrenosModel {
 	@Id
 	private String id;
 	
-	/** Fecha y hora de la sesión "dd/MM/yyyy HH:mm" */
-	private String fecha_hora;
+	/** Fecha y hora de la sesión "yyyy/MM/dd HH:mm" */
+	@Field("fecha_hora")
+	private String fechaHora;
 	
 	private String barco;
 	
@@ -74,12 +76,13 @@ public class EntrenosModel {
 		this.alias = alias;
 	}
 
-	public String getFecha_hora() {
-		return fecha_hora;
+
+	public String getFechaHora() {
+		return fechaHora;
 	}
 
-	public void setFecha_hora(String fecha_hora) {
-		this.fecha_hora = fecha_hora;
+	public void setFechaHora(String fechaHora) {
+		this.fechaHora = fechaHora;
 	}
 
 	public String getBarco() {

@@ -128,7 +128,7 @@ public class EntrenosService {
 	private EntrenosModel buildSesionDtoToModel(EntrenosDto dto) {
 		EntrenosModel response = new EntrenosModel();
 		
-		response.setFecha_hora(dto.getFecha_hora());
+		response.setFechaHora(dto.getFecha_hora());
 		response.setBarco(dto.getBarco());
 		response.setDistancia(dto.getDistancia());
 		response.setRitmo(dto.getRitmo());	
@@ -152,7 +152,7 @@ public class EntrenosService {
 	private EntrenosDto buildSesionModelToDto(EntrenosModel model) {
 		EntrenosDto response = new EntrenosDto();
 		
-		response.setFecha_hora(model.getFecha_hora());
+		response.setFecha_hora(model.getFechaHora());
 		response.setBarco(model.getBarco());
 		response.setDistancia(model.getDistancia());
 		response.setRitmo(model.getRitmo());	
