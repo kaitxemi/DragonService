@@ -44,6 +44,7 @@ public class EntrenosService {
 	 * @throws Exception en caso de error
 	 */
 	public Boolean create(EntrenosDto request) throws Exception {
+		LOG.info("EntrenosService - create: Creando sesión con datos: {}", request);
 		Boolean response = Boolean.FALSE;
 		
 		EntrenosModel model = buildSesionDtoToModel(request);
@@ -104,16 +105,19 @@ public class EntrenosService {
 	 * @throws Exception en caso de error
 	 */
 	public List<EntrenosDto> search(EntrenosSearchDto parameters) throws Exception {
+		LOG.info("EntrenosService - search: Parámetros de búsqueda recibidos: {}", parameters);
 		List<EntrenosDto> response = new java.util.ArrayList<>();
 		List<EntrenosModel> modelResponse = null;
 		
 		if (parameters.getAlias() != null) {
-			modelResponse = entrenosRepository.findByDistanciaAndAlias(parameters.getDistancia(), parameters.getAlias());
+			modelResponse = entrenosRepository.findTop100ByDistanciaAndAliasOrderByFechaHoraDesc(parameters.getDistancia(), parameters.getAlias());
 		}  else {
-			modelResponse = entrenosRepository.findByDistancia(parameters.getDistancia());
+			modelResponse = entrenosRepository.findTop100ByDistanciaOrderByFechaHoraDesc(parameters.getDistancia());
 		}
 		
 		for (EntrenosModel model : modelResponse) {
+			// Devolvemos los 100 registros más recientes
+			
 			response.add(buildSesionModelToDto(model));
 		}
 		

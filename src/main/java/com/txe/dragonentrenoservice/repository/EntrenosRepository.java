@@ -10,9 +10,11 @@ import com.txe.dragonentrenoservice.model.EntrenosModel;
 @Repository
 public interface EntrenosRepository extends MongoRepository<EntrenosModel, String> {
 
-	List<EntrenosModel> findByDistanciaAndAlias(Integer distancia, String alias);
 	
-	List<EntrenosModel> findByDistancia(Integer distancia);
+	List<EntrenosModel> findTop100ByDistanciaOrderByFechaHoraDesc(Integer distancia);
+	
+	List<EntrenosModel> findTop100ByDistanciaAndAliasOrderByFechaHoraDesc(Integer distancia, String alias);
+	
 
 }
 

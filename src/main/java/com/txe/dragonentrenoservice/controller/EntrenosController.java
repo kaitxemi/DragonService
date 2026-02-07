@@ -56,6 +56,7 @@ public class EntrenosController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     public ResponseEntity<Void> post(@RequestBody @Valid EntrenosDto sesionDto) throws Exception {
+    	LOG.info("EntrenosController - post: Creando sesión con datos: {}", sesionDto);
     	entrenosService.create(sesionDto);
     	
     	return ResponseEntity.noContent().build(); // 204
@@ -150,6 +151,7 @@ public class EntrenosController {
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     public List<EntrenosDto> search(@RequestBody @Valid EntrenosSearchDto filterParams) throws Exception {
+    	LOG.info("EntrenosController - search: Parámetros de búsqueda recibidos: {}", filterParams);
         List<EntrenosDto> response = entrenosService.search(filterParams);
         
         return response;
